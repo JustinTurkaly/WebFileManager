@@ -1,5 +1,5 @@
 # WebFileManager
-A File Management system, allows downloads and previews of files stored in google cloud storage
+A File Management system that allows downloads and previews of files stored in google cloud storage
 
 ## Getting Started
 1. Clone this repository ```$ git clone https://github.com/JustinTurkaly/WebFileManager.git```
