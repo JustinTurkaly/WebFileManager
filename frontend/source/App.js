@@ -1,53 +1,149 @@
 import React, { useState, useEffect } from 'react';
 import FileTree from './FileTree'
+import FilePreviewController from './FilePreviewController'
 import Papa from 'papaparse';
 
 const App = () => {
-  const [data, setData] = useState([]);
-  let url = "https://storage.googleapis.com/file-manager-hw/web_hw_files/CustomerA/Flange/PathPlanning/buildfile.csv"
-  useEffect(() => {
-    Papa.parse(url, {
-      download: true,
-      header: true,
-          complete: results => {
-            console.log(results.data)
-            setData(results.data.slice(0, 41))
 
-          }
-      // rest of config ...
-    })
-  }, []);
+  const [selectedFile, setSelectedFile] = useState("");
 
   const explorer={
-    name: "CustomerA",
+    name: "CustomerFiles",
     isFolder: true,
-    items: [{
-      name: "Flange",
+    items: [
+      {
+      name: "CustomerA",
       isFolder: true,
-      items: [
-        {
-        name: "CAD",
+      items: [{
+        name: "Flange",
         isFolder: true,
         items: [
           {
-            name: "original_CAD.stl",
-            isFolder: false,
-            items: []
-          },
-          {
-            name: "Prepped_CAD.step",
-            isFolder: false,
-            items: []
-          }
+          name: "CAD",
+          isFolder: true,
+          items: [
+            {
+              name: "original_CAD.stl",
+              isFolder: false,
+              items: []
+            },
+            {
+              name: "Prepped_CAD.step",
+              isFolder: false,
+              items: []
+            }
+          ]
+        },
+        {
+          name: "PathPlanning",
+          isFolder: true,
+          items: [
+            {
+              name: "buildfile.csv",
+              isFolder: false,
+              items: []
+            },
+            {
+              name: "part_out_test2.csv",
+              isFolder: false,
+              items: []
+            },
+            {
+              name: "part_test2.csv",
+              isFolder: false,
+              items: []
+            },
+            {
+              name: "part.csv",
+              isFolder: false,
+              items: []
+            }
+          ]
+        },
+        {
+          name: "Scan",
+          isFolder: true,
+          items: [
+            {
+              name: "rsi1way_c1r1_state.log",
+              isFolder: false,
+              items: []
+            },
+            {
+              name: "scan_mesh.ply",
+              isFolder: false,
+              items: []
+            },
+            {
+              name: "scanner_c1r1.log",
+              isFolder: false,
+              items: []
+            },
+            {
+              name: "zmetric.json",
+              isFolder: false,
+              items: []
+            }
+          ]
+        }
         ]
       }
+      ]
+    },
+    {
+      name: "CustomerB",
+      isFolder: true,
+      items: [
+        {
+          name: "Stiffener",
+          isFolder: true,
+          items: [
+            {
+              name: "CAD",
+              isFolder: true,
+              items: [
+                {
+                  name: "CustomerB_CAD.stl",
+                  isFolder: false,
+                  items: []
+                }
+              ]
+            },
+            {
+              name: "PathPlanning",
+              isFolder: true,
+              items: [
+                {
+                  name: "hat_out.csv",
+                  isFolder: false,
+                  items: []
+                },
+                {
+                  name: "hat.csv",
+                  isFolder: false,
+                  items: []
+                }
+              ]
+            },
+            {
+              name: "Scan",
+              isFolder: true,
+              items: []
+            }
+          ]
+        }
       ]
     }
     ]
   }
 
   return (
-    <FileTree explorer={explorer}/>
+    <div style={{display: 'flex'}}>
+      <div style={{border: '1px solid black', width: '18vw', height: '95vh'}}>
+    <FileTree explorer={explorer} setSelectedFile={setSelectedFile}/>
+    </div>
+    <FilePreviewController selectedFile={selectedFile}/>
+    </div>
     // data.length &&
     // <div>
     // <div>{JSON.stringify(Object.keys(data[0]))}</div>

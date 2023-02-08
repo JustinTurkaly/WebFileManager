@@ -40,21 +40,19 @@ async function configureBucketCors() {
       ${responseHeader} responses across origins`);
 }
 
-async function createBucket() {
-  // Creates the new bucket
-  // storage.getBuckets("file-manager-hw")
-  // .then((res) => {console.log(res)
-  //   console.log(`Bucket ${bucketName} created.`);
-  // })
+const grabUrl = async (fileName) => {
   const filePaths = {
     "buildfile.csv": 'web_hw_files/CustomerA/Flange/PathPlanning/buildfile.csv',
-    ""
+    "part.csv": 'web_hw_files/CustomerA/Flange/PathPlanning/part.csv',
+    "part_out_test2.csv": 'web_hw_files/CustomerA/Flange/PathPlanning/part_out_test2.csv',
+    "part_test2.csv": 'web_hw_files/CustomerA/Flange/PathPlanning/part_test2.csv'
   }
   let bucket = storage.bucket(bucketName)
-  let file = bucket.file('web_hw_files/CustomerA/Flange/PathPlanning/buildfile.csv')
-  const url = `https://storage.googleapis.com/${bucket.name}/${file.name}`
+  let file = bucket.file(filePaths[fileName])
+  let url = `https://storage.googleapis.com/${bucket.name}/${file.name}`
   console.log("bucket!!!!!!" + url)
 }
 
-configureBucketCors().catch(console.error)
-createBucket().catch(console.error);
+// configureBucketCors().catch(console.error)
+// createBucket().catch(console.error);
+module.exports.grabUrl = grabUrl;
