@@ -25,7 +25,13 @@
     "webpack-dev-server": "^4.11.1"
   },
   "dependencies": {
+    "@google-cloud/storage": "^6.9.2",
     "@types/body-parser": "^1.19.2",
+    "bluebird": "^3.7.2",
+    "dotenv": "^16.0.3",
+    "mysql": "^2.18.1",
+    "mysql2": "^3.1.1",
+    "papaparse": "^5.3.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   }
