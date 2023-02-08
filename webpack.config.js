@@ -18,12 +18,19 @@ module.exports = {
   },
   resolve: {
     extensions: [".js", ".jsx", ".json", ".ts"],
+    fallback: {
+      "path": require.resolve("path-browserify"),
+      "stream": require.resolve("stream-browserify"),
+      "util": require.resolve("util"),
+      "url": require.resolve("url"),
+      "crypto": require.resolve("crypto-browserify")
+    }
   },
   module: {
     rules: [
       {
         test: /\.(js|jsx)$/,
-        exclude: /node_modules/,
+        exclude: ['/node_modules/', '/backend/'],
         use: "babel-loader",
       },
     ],

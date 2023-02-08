@@ -6,17 +6,17 @@ function FileTree({ explorer, setSelectedFile }) {
     setExpand(!expand)
     if (explorer.name.includes(".")) {
       setSelectedFile(explorer.name)
-      // console.log(explorer.name)
     }
   }
 
   return (
-    <div>
-      <span onClick={handleClick} style={{cursor: 'pointer'}}>{explorer.name}</span>
+    <div style={{ margin: '8px' }}>
+      <span onClick={handleClick} style={{ cursor: 'pointer', border: '1px solid black', borderRadius: '3px' }}>{explorer.name}
+      </span>
       <br />
       <div style={{ display: expand ? "block" : "none", paddingLeft: 15 }}>
         {explorer.items.map((explore) => (
-          <FileTree key={explore.name} explorer={explore} setSelectedFile={setSelectedFile}/>
+          <FileTree key={explore.name} explorer={explore} setSelectedFile={setSelectedFile} />
         ))}
       </div>
     </div>
